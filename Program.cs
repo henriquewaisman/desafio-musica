@@ -8,7 +8,7 @@ class Program
     static void Main(string[] args)
     {
         ImportarDadosPlanilha();
-        Exe2();
+        Exe3();
     }
     public static void ImportarDadosPlanilha()
     {
@@ -54,5 +54,23 @@ class Program
         var numArtistas = musicas.DistinctBy(m => m.Artista).Count();
         Console.WriteLine($"Temos {numArtistas} artistas diferentes cadastrados em nossa base.");
     }
+    public static void Exe3()
+    {
+        var albunsPorMesEAno = musicas.GroupBy(g => new
+        {
+            Mes = g.DataLancamento.Month,
+            Ano = g.DataLancamento.Year,
+            formato = g.DataLancamento.ToString("MMMM/yyyy")
 
+        }).OrderBy(o => o.Key.Ano).ThenBy(o => o.Key.Mes).Select(s => new
+        {
+            formato = s.Key.formato,
+            Quantidade = s.Count()
+        });
+
+        foreach (var album in albunsPorMesEAno)
+        {
+            Console.WriteLine($"{album.formato}: {album.Quantidade} álbuns");
+        }
+    }
 }

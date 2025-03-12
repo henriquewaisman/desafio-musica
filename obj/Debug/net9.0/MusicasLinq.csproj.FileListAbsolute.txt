@@ -29,3 +29,4 @@ C:\dev\autoglass\MusicasLinq\obj\Debug\net9.0\refint\MusicasLinq.dll
 C:\dev\autoglass\MusicasLinq\obj\Debug\net9.0\MusicasLinq.pdb
 C:\dev\autoglass\MusicasLinq\obj\Debug\net9.0\MusicasLinq.genruntimeconfig.cache
 C:\dev\autoglass\MusicasLinq\obj\Debug\net9.0\ref\MusicasLinq.dll
+C:\dev\autoglass\MusicasLinq\obj\Debug\net9.0\MusicasLinq.sourcelink.json
