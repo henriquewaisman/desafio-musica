@@ -1,5 +1,7 @@
 ﻿using MathNet.Numerics;
+using MathNet.Numerics.Statistics;
 using NPOI.SS.UserModel;
+using Org.BouncyCastle.Asn1.X509;
 
 class Program
 {
@@ -8,7 +10,7 @@ class Program
     static void Main(string[] args)
     {
         ImportarDadosPlanilha();
-        Exe3();
+        Exe4B();
     }
     public static void ImportarDadosPlanilha()
     {
@@ -71,6 +73,36 @@ class Program
         foreach (var album in albunsPorMesEAno)
         {
             Console.WriteLine($"{album.formato}: {album.Quantidade} álbuns");
+        }
+    }
+    public static void Exe4A()
+    {
+        var rankGenero = musicas.GroupBy(m => m.Genero)
+        .Select(m => new
+        {
+            genero = m.Key,
+            quantidade = m.Count()
+        }).OrderByDescending(m => m.quantidade)
+        .Take(5)
+        .ToList();
+        foreach (var genero in rankGenero)
+        {
+            Console.WriteLine($"{genero.genero} - {genero.quantidade}");
+        }
+    }
+    public static void Exe4B()
+    {
+        var maisMusicas = musicas.GroupBy(m => m.Album)
+        .Select(m => new
+        {
+            album = m.Key,
+            quantidade = m.Count()
+        }).OrderByDescending(m => m.quantidade)
+        .Take(3)
+        .ToList();
+        foreach (var album in maisMusicas)
+        {
+            Console.WriteLine($"{album.album} - {album.quantidade} musicas");
         }
     }
 }
