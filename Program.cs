@@ -10,7 +10,7 @@ class Program
     static void Main(string[] args)
     {
         ImportarDadosPlanilha();
-        Exe4C();
+        Exe5();
     }
     public static void ImportarDadosPlanilha()
     {
@@ -118,6 +118,25 @@ class Program
         foreach (var pais in topPaises)
         {
             Console.WriteLine($"{pais.pais} - {pais.quantidade}");
+        }
+    }
+    public static void Exe5()
+    {
+        var qtdGravadoras = musicas.GroupBy(m => m.Gravadora).Count();
+        var topGravadoras = musicas.GroupBy(m => m.Gravadora)
+        .Select(m => new
+        {
+            nome = m.Key,
+            qtdMusicas = m.Count()
+        })
+        .OrderByDescending(m => m.qtdMusicas)
+        .Take(5)
+        .ToList();
+
+        Console.WriteLine($"A quantidade de gravadoras na base é {qtdGravadoras}");
+        foreach (var gravadora in topGravadoras)
+        {
+            Console.WriteLine($"{gravadora.nome} - {gravadora.qtdMusicas} músicas");
         }
     }
 }
